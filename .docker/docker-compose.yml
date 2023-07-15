@@ -1,0 +1,81 @@
+services:
+  prefect:
+    image: prefecthq/prefect:2-python3.9
+    entrypoint: prefect server start
+    ports:
+      - "4200:4200"
+    environment:
+      PREFECT_API_URL: http://localhost:4200/api
+      PREFECT_ORION_API_HOST: 0.0.0.0
+      PREFECT_API_DATABASE_CONNECTION_URL: postgresql+asyncpg://postgres:postgres@postgres:5432/postgres
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - prefect-backend
+
+  metabase:
+    image: metabase/metabase:latest
+    container_name: metabase
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./metabase/metabase-data/:/metabase-data
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: metabase
+      MB_DB_PORT: 5432
+      MB_DB_USER: metabase
+      MB_DB_PASS: metabasepass
+      MB_DB_HOST: postgres
+    depends_on:
+      postgres:
+       condition: service_healthy
+    networks:
+      - prefect-backend
+
+  postgres:
+    build: postgres/.
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - prefect-backend
+
+  citus:
+    build: citus/.
+    ports:
+      - "5439:5432"
+    environment:
+      POSTGRES_PASSWORD: citus
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - prefect-backend
+
+  jupyter:
+    build: .
+    entrypoint: /bin/bash -c "start.sh jupyter lab --no-browser --ip=* --port=8888 --allow-root --NotebookApp.token=''"
+    environment:
+      - GRANT_SUDO=yes
+    ports:
+      - "8888:8888"
+      - "8080:8080"
+    networks:
+      - prefect-backend
+    volumes:
+      - ../work:-0
+
+
+      
+networks:
+  prefect-backend:
