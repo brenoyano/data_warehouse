@@ -38,7 +38,7 @@ git clone https://github.com/brenoyano/data_warehouse.git
 cd data_warehouse
 ```
 
-3. Start the data warehouse environment using Docker Compose.
+3. Start the data warehouse environment using Docker Compose from the .docker folder.
 
 ```
 docker-compose up -d
