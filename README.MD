@@ -1,5 +1,8 @@
 # Data Warehouse Project
 
+[![DBT](https://img.shields.io/badge/DBT-orange)](https://www.getdbt.com/)
+[![Metabase](https://img.shields.io/badge/Metabase-blue)](https://www.metabase.com/)
+
 This repository contains a comprehensive data warehousing project that integrates various technologies and tools to build a powerful and scalable data warehouse solution. With Docker Compose as the orchestrator, I have combined the capabilities of Citus 10, Metabase, Prefect, dbt, Spark, and Jupyter Notebook to create an amazing data analytics and processing platform.
 
 ## Technologies and Tools Used
