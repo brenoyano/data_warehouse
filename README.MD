@@ -2,6 +2,11 @@
 
 [![DBT](https://img.shields.io/badge/DBT-orange)](https://www.getdbt.com/)
 [![Metabase](https://img.shields.io/badge/Metabase-blue)](https://www.metabase.com/)
+[![Spark](https://img.shields.io/badge/Apache_Spark-orange)](https://spark.apache.org/)
+[![Prefect](https://img.shields.io/badge/Prefect-blue)](https://www.prefect.io/)
+[![Jupyter](https://img.shields.io/badge/Jupyter-orange)](https://jupyter.org/)
+[![Docker](https://img.shields.io/badge/Docker-blue)](https://www.docker.com/)
+[![Citus 10](https://img.shields.io/badge/Citus_10-brightgreen)](https://www.citusdata.com/)
 
 This repository contains a comprehensive data warehousing project that integrates various technologies and tools to build a powerful and scalable data warehouse solution. With Docker Compose as the orchestrator, I have combined the capabilities of Citus 10, Metabase, Prefect, dbt, Spark, and Jupyter Notebook to create an amazing data analytics and processing platform.
 
