@@ -1,5 +1,6 @@
 FROM jupyter/all-spark-notebook:latest
 RUN pip install dbt-postgres
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && sudo ./aws/install
 COPY ./dependencies/postgresql-42.6.0.jar /usr/local/spark/jars/postgresql-42.6.0.jar
 RUN mkdir /home/jovyan/.dbt
 COPY ./dependencies/profiles.yml /home/jovyan/.dbt/profiles.yml

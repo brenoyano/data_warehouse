@@ -37,7 +37,7 @@ services:
   postgres:
     build: postgres/.
     ports:
-      - "5432:5432"
+      - "5435:5432"
     environment:
       POSTGRES_PASSWORD: postgres
     healthcheck:
@@ -73,7 +73,7 @@ services:
     networks:
       - prefect-backend
     volumes:
-      - ../work:-0
+      - ../work:/home/jovyan/work
 
 
       
